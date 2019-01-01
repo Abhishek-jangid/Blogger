@@ -29,8 +29,13 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+"""
+Add the app name here in the settings to tell django to
+correctly search for templates, databases and models
+"""
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
