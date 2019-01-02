@@ -15,9 +15,11 @@ class Post(models.Model):
     # but there is problem with auto_now_add is that we can't never update the time again.
     # a new field- default = timezone.now not timezone.now() because we don't want to execute the function
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     # if user gets deleted, the Post associated with that user will also be deleted
     def __str__(self):
         return self.title
+
 
 """
 After completing a model run the command -'python manage.py makemigrations' and then
