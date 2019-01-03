@@ -130,3 +130,10 @@ LOGIN_URL = 'login'
 # without this when we try to go to profile page after logging out,
 # django looks for login page at accounts/login but it is not present there,
 # so we have to tell django the login_url
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT is where are uploaded files will be located on the filesystem, so in the Profile model
+# we specified the image to be stored at profile_pics, so now that profile_pics folder will be created
+# in media directory and put the image in there and this media directory will be created at the base_dir
+MEDIA_URL = '/media/'
+# this media url is how we are going to access the image in the browser, so it will be at
+# /media/profile_pics/nameofimage
