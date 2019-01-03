@@ -8,9 +8,11 @@ from django.contrib.auth.forms import UserCreationForm
 # We can't add fields to UserCreationForm so we have to make our custom form
 # which will be UserRegisterForm, so import that and remove UserCreationForm, So,
 from .forms import UserRegisterForm
-
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
+
+
 # types of messages:
 #     messages.debug
 #     messages.info
@@ -30,8 +32,14 @@ def register(request):
             # this form.save() method will save the details in the database
             # all the password encryption is handled by django in background
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for { username }!')
-            return redirect('blog-home')
+            messages.success(request, f'Account created for { username }! Now try logging in')
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+
+# this decorator will only give us the profile view if the user is logged in
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')

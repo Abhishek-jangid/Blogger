@@ -10,20 +10,20 @@
             <!-- fieldset tag is used to group related items in a form-->
             <fieldset class="form-group">
                 <!-- legend is used to give the fieldset a caption or heading -->
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend class="border-bottom mb-4">Log In</legend>
                 <!-- form.as_p renders our form in paragraph tag
                 similar tags are as_table and as_li
                  but after using crispy form we no longer need as_p method-->
                 {{ form |crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline_info" type="submit">Sign Up</button>
+                <button class="btn btn-outline_info" type="submit">Log In</button>
             </div>
         </form>
         <div class="border-top pt-3">
             <!-- this small tag makes the text a bit dull that it will not stand out too much-->
             <small class="text-muted">
-                Already have an Account?<a class="ml-2" href="{% url 'login'%}">Sign In</a>
+                Don't have an Account?<a class="ml-2" href="{% url 'register' %}">Sign Up here</a>
             </small>
         </div>
     </div>

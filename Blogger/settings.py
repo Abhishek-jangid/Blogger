@@ -121,3 +121,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'blog-home'
+# by default after logging in django looks at http://localhost:8000/accounts/profile/ for
+# redirecting the user to that page but we don't want that so we will tell django to redirect
+# the user to our specified user
+LOGIN_URL = 'login'
+# without this when we try to go to profile page after logging out,
+# django looks for login page at accounts/login but it is not present there,
+# so we have to tell django the login_url
