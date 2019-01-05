@@ -10,6 +10,33 @@
             <p>{{ user.profile.bio }}</p>
         </div>
       </div>
-      <!-- FORM HERE -->
+      <form method="post" enctype="multipart/form-data">
+            <!-- enctype has 3 attribues:-
+            we have to do this is in order for our form to pass our image data for our profile picture properly
+            1)application/x-www-form-urlencoded - Default,All characters are encoded before sent
+             (spaces are converted to "+" symbols, and special characters are converted to ASCII HEX values).
+            2)multipart/form-data - No characters are encoded. This value is required when you are using
+            forms that have a file upload control.
+            3)text/plain - Spaces are converted to "+" symbols, but no special characters are encoded
+            -->
+            <!-- csrf is a hidden tag, which we need to add here it is a
+            cross site request forgery token, this will protect our form
+            against certain attacks this is added security django requires-->
+            {% csrf_token %}
+            <!-- fieldset tag is used to group related items in a form-->
+            <fieldset class="form-group">
+
+                <!-- legend is used to give the fieldset a caption or heading -->
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                <!-- form.as_p renders our form in paragraph tag
+                similar tags are as_table and as_li
+                 but after using crispy form we no longer need as_p method-->
+                {{ u_form |crispy }}
+                {{ p_form |crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline_info" type="submit">Update</button>
+            </div>
+        </form>
     </div>
 {% endblock content %}
