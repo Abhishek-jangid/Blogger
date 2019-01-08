@@ -41,6 +41,8 @@ def register(request):
 
 
 # this decorator will only give us the profile view if the user is logged in
+# check LOGIN_URL in settings.py
+# or do this login_required(redirect_field_name='next', login_url=None)
 @login_required
 def profile(request):
     if request.method == 'POST':

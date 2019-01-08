@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 # to use timezone to take our timezone in considerations
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 # Create your models here.
@@ -20,6 +21,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    # to redirect to that post when that post is created
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
+        # reverse will return a full path as a string
 
 """
 After completing a model run the command -'python manage.py makemigrations' and then

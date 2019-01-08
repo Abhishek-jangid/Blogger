@@ -36,7 +36,8 @@
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <!-- django provides us a user variable that contains the current user -->
-                    <a class="nav-item nav-link" href="{% url 'profile' %}">{{user.first_name}}</a>
+                    <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                     <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
