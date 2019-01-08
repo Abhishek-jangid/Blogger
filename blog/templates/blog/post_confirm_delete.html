@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}  <!--this will allow us to use crispy tags on any form we want-->
+{% block content %}
+    <div class="content-section">
+        <form method="post">
+            <!-- csrf is a hidden tag, which we need to add here it is a
+            cross site request forgery token, this will protect our form
+            against certain attacks this is added security django requires-->
+            {% csrf_token %}
+            <!-- fieldset tag is used to group related items in a form-->
+            <fieldset class="form-group">
+                <!-- legend is used to give the fieldset a caption or heading -->
+                <legend class="border-bottom mb-4">Delete Post</legend>
+                <!-- form.as_p renders our form in paragraph tag
+                similar tags are as_table and as_li
+                 but after using crispy form we no longer need as_p method-->
+            </fieldset>
+            <h2>Are u sure u want to delete the Post "{{ object.title }}" </h2>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                <a class="btn btn-outline_secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
