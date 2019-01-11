@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -28,6 +29,21 @@ class PostListView(ListView):
     template_name = 'blog/home.html'  # to tell django that where to look for template
     context_object_name = 'post_key'  # by default ListView calls the looping obj as object_list so we have to rename it
     ordering = ['-date_posted']  # tells the view how to order elements, - defines in reverse order
+    paginate_by = 5  # tells django for number of items per page
+
+
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'blog/user_posts.html'  # to tell django that where to look for template
+    context_object_name = 'post_key'  # tells the view how to order elements, - defines in reverse order
+    paginate_by = 5  # tells django for number of items per page
+
+    # Now we want to get the user associated with username we got got through our username from url
+    # so if the user exists the get_object_or_404 will return the user or will give a 404 error
+    # so import User model and get_object_or_404 from shortcuts
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 class PostDetailView(DetailView):

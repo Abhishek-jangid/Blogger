@@ -17,7 +17,7 @@ class Profile(models.Model):
     
     # this method runs after our model gets saved, it already exists in our parent class
     # but we are defining it here to add some extra functionality to it
-    def save(self):
+    def save(self, **kwargs):
         super().save()
 
         img = Image.open(self.image.path)
