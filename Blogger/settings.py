@@ -24,7 +24,7 @@ SECRET_KEY = 'n2st9owts^tz0uasczrbm0cs7_(460_x0@zj(wisbj2l09lfma'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.102', 'localhost']
 
 # Application definition
 """
@@ -137,3 +137,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # this media url is how we are going to access the image in the browser, so it will be at
 # /media/profile_pics/nameofimage
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('MAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('PASS')
+
